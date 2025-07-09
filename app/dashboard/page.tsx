@@ -68,7 +68,7 @@ export default function Dashboard() {
     };
 
     fetchProfile();
-  }, []);
+  }, [backendUrl]);
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,8 +125,12 @@ export default function Dashboard() {
       } else {
         setSubscribeError("Failed to create Stripe session");
       }
-    } catch (err: any) {
-      setSubscribeError("Error: " + (err.message || "Unknown error"));
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setSubscribeError("Error: " + err.message);
+      } else {
+        setSubscribeError("Error: Unknown error");
+      }
     } finally {
       setSubscribing(false);
     }
