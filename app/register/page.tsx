@@ -69,7 +69,7 @@ const Register = () => {
                 type="text"
                 placeholder="JohnDoe"
                 required
-                className="focus:ring-2 focus:ring-blue-400"
+                className="focus:ring-2 focus:ring-blue-200"
               />
             </div>
 
@@ -81,7 +81,7 @@ const Register = () => {
                 type="email"
                 placeholder="m@example.com"
                 required
-                className="focus:ring-2 focus:ring-blue-400"
+                className="focus:ring-2 focus:ring-blue-200"
               />
             </div>
 
@@ -92,7 +92,7 @@ const Register = () => {
                 name="password" // ✅ Required for FormData
                 type="password"
                 required
-                className="focus:ring-2 focus:ring-blue-400"
+                className="focus:ring-2 focus:ring-blue-200"
               />
             </div>
 

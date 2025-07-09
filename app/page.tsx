@@ -55,7 +55,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mt-4">
             <Link
-              className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 shadow-lg transition text-center text-lg w-full sm:w-auto focus:ring-4 focus:ring-blue-300"
+              className="rounded-lg bg-blue-600  text-white font-semibold px-8 py-3 shadow-lg transition text-center text-lg w-full sm:w-auto focus:ring-4 focus:ring-blue-300"
               href="/register"
             >
               Get Started Free
