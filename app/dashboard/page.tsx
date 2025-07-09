@@ -42,10 +42,12 @@ export default function Dashboard() {
   const [newPlatform, setNewPlatform] = useState("");
   const [newLink, setNewLink] = useState("");
 
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/profile", {
+        const response = await fetch(`${backendUrl}/profile`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -71,7 +73,7 @@ export default function Dashboard() {
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/profile", {
+    const response = await fetch(`${backendUrl}/profile`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -112,7 +114,7 @@ export default function Dashboard() {
     setSubscribing(true);
     setSubscribeError("");
     try {
-      const res = await fetch("http://localhost:5000/api/stripe/create-checkout-session", {
+      const res = await fetch(`${backendUrl}/stripe/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: profile.userId.email }),

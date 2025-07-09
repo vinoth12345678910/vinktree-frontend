@@ -24,7 +24,9 @@ const Register = () => {
     const email = formData.get("email") as string
     const password = formData.get("password") as string
 
-    fetch("http://localhost:5000/api/register", {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+    fetch(`${backendUrl}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
