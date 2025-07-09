@@ -15,7 +15,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Login() {
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -35,13 +34,10 @@ export default function Login() {
 
       if (response.ok) {
         const data = await response.json();
-
-        // ✅ Save token to localStorage
+        // Save token to localStorage
         localStorage.setItem("token", data.token);
-
         alert("Login successful!");
-
-        // ✅ Redirect to dashboard
+        // Redirect to dashboard
         window.location.href = "/dashboard";
       } else {
         alert("Login failed!");
@@ -98,7 +94,7 @@ export default function Login() {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col items-center gap-2 pt-2">
-          <span className="text-sm text-gray-500">Don't have an account?</span>
+          <span className="text-sm text-gray-500">Don&apos;t have an account?</span>
           <Link href="/register" className="text-blue-600 hover:underline font-semibold">
             Sign Up
           </Link>
