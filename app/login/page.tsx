@@ -67,7 +67,7 @@ export default function Login() {
                 type="text"
                 placeholder="John Doe"
                 required
-                className="focus:ring-2 focus:ring-blue-400"
+                className="focus:ring-2 focus:ring-blue-400 text-gray-900"
               />
             </div>
             <div className="grid gap-2">
@@ -85,10 +85,10 @@ export default function Login() {
                 name="password"
                 type="password"
                 required
-                className="focus:ring-2 focus:ring-blue-400"
+                className="focus:ring-2 focus:ring-blue-400 text-gray-900"
               />
             </div>
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-2 rounded-lg shadow">
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-2 rounded-lg shadow text-white">
               Login
             </Button>
           </form>
