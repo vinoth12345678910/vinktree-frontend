@@ -107,7 +107,58 @@ export default function Dashboard() {
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-100 text-lg font-semibold text-gray-500">Loading...</div>;
-  if (!profile) return <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-100 text-lg font-semibold text-gray-500">No profile data found.</div>;
+  if (!profile) return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-100">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const response = await fetch(`${backendUrl}/profile`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              bio,
+              socialLinks: {
+                linkedin: socialLinks.linkedin,
+                github: socialLinks.github,
+                twitter: socialLinks.twitter,
+              },
+            }),
+          });
+          if (response.ok) {
+            alert("Profile created successfully!");
+            window.location.reload();
+          } else {
+            alert("Failed to create profile.");
+          }
+        }}
+        className="flex flex-col gap-4 bg-white/90 rounded-2xl shadow-2xl p-8 w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold text-center mb-4">Create Your Profile</h2>
+        <div>
+          <Label className="text-base">Bio</Label>
+          <Input value={bio} onChange={(e) => setBio(e.target.value)} className="mt-1 focus:ring-2 focus:ring-blue-400" placeholder="Tell us about yourself..." />
+        </div>
+        <div>
+          <Label className="text-base">LinkedIn</Label>
+          <Input value={socialLinks.linkedin || ""} onChange={(e) => setSocialLinks({ ...socialLinks, linkedin: e.target.value })} className="mt-1 focus:ring-2 focus:ring-blue-400" placeholder="LinkedIn URL" />
+        </div>
+        <div>
+          <Label className="text-base">GitHub</Label>
+          <Input value={socialLinks.github || ""} onChange={(e) => setSocialLinks({ ...socialLinks, github: e.target.value })} className="mt-1 focus:ring-2 focus:ring-blue-400" placeholder="GitHub URL" />
+        </div>
+        <div>
+          <Label className="text-base">Twitter</Label>
+          <Input value={socialLinks.twitter || ""} onChange={(e) => setSocialLinks({ ...socialLinks, twitter: e.target.value })} className="mt-1 focus:ring-2 focus:ring-blue-400" placeholder="Twitter URL" />
+        </div>
+        <Button type="submit" className="mt-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg shadow text-lg">
+          Create Profile
+        </Button>
+      </form>
+    </div>
+  );
 
   // Improved subscribe handler using profile email
   const handleSubscribe = async () => {
